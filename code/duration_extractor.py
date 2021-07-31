@@ -482,7 +482,7 @@ class DurationExtractor(nn.Module):
 class Collate:
     def __init__(self, device):
         self.device = device
-        self.text_proc = TextProcessor(HPText.graphemes, phonemize=HPText.use_phonemes)
+        self.text_proc = TextProcessor(HPText.graphemes, phonemiz=HPText.use_phonemes)
         self.stft = MySTFT().to(device)
         self.norm = MinMaxNorm(HPStft.spec_min, HPStft.spec_max, hp.scale_min, hp.scale_max)  # scale log-mel-spectrs some interval
 
@@ -520,7 +520,7 @@ if __name__ == '__main__':
         device='cuda' if torch.cuda.is_available() else 'cpu'
     )
 
-    logdir = os.path.join('logs', time.strftime("%Y-%m-%dT%H-%M-%S") + '-' + args.name)
+    logdir = os.path.join('drive/MyDrive/ss', time.strftime("%Y-%m-%dT%H-%M-%S") + '-' + args.name)
     if args.from_checkpoint:
         m.load(args.from_checkpoint)
         # use the folder with checkpoint as a logdir

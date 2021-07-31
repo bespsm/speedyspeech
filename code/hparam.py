@@ -23,11 +23,13 @@ class HPStft:
 
 class HPText:
     # needed to make independent on the directory from which python is invoked
-    dataset = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'datasets/data/LJSpeech-1.1')
+    dataset = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'datasets/data')
     num_train, num_valid = 13000, 13099  # train will use (0, 13000), valid wil use (13000, 13099)
 
-    punctuation = list("'\",.:?!")
-    graphemes = ["<pad>", "<unk>"] + list('abcdefghijklmnopqrstuvwxyz ') + punctuation
+    # punctuation = list("'\",.:?!")
+    punctuation = list(",.?")
+    # graphemes = ["<pad>", "<unk>"] + list('abcdefghijklmnopqrstuvwxyz ') + punctuation
+    graphemes = ["<pad>", "<unk>"] + list('абвгдеёжзийклмнопрстуфхцчшщъыьэюя ') + punctuation
     # graphemes_czech = ["<pad>", "<unk>"] + list('aábcčdďeěfghiíjklmnňoópqrřsštťuůúvwxyýzž ') + punctuation
     use_phonemes = True
 
