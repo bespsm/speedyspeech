@@ -376,7 +376,7 @@ class DurationExtractor(nn.Module):
 
         return dec[:, 1:, :], weights
 
-    def fit(self, batch_size, logdir, epochs=1, grad_clip=1, checkpoint_every=10):
+    def fit(self, batch_size, logdir, epochs=1, grad_clip=1, checkpoint_every=5):
         self.grad_clip = grad_clip
         self.logger = SummaryWriter(logdir)
 
@@ -520,7 +520,7 @@ if __name__ == '__main__':
         device='cuda' if torch.cuda.is_available() else 'cpu'
     )
 
-    logdir = os.path.join('drive/MyDrive/ss', time.strftime("%Y-%m-%dT%H-%M-%S") + '-' + args.name)
+    logdir = os.path.join('drive/MyDrive/ss/logdir', time.strftime("%Y-%m-%dT%H-%M-%S") + '-' + args.name)
     if args.from_checkpoint:
         m.load(args.from_checkpoint)
         # use the folder with checkpoint as a logdir
@@ -530,6 +530,6 @@ if __name__ == '__main__':
         epochs=args.epochs,
         grad_clip=args.grad_clip,
         batch_size=args.batch_size,
-        checkpoint_every=10,
+        checkpoint_every=5,
         logdir=logdir
     )
